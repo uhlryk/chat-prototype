@@ -1,0 +1,105 @@
+@import "compass";
+@import "compass/reset";
+@import "bootstrap";
+
+html, body{
+  height: 100%;
+}
+.layout{
+  height: 100%;
+}
+body {
+  background-color: #fff;
+}
+.room-button{
+  width:100%;
+}
+.container-vertical {
+  height: 100%;
+  display: table;
+}
+.vertical-center-row {
+  display: table-cell;
+  vertical-align: middle;
+  position:relative;
+  top:-50px;
+}
+.success-block {
+  @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+.medium-label{
+  font-size:19px;
+}
+.error-template {padding: 40px 15px;text-align: center;}
+
+.chat{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100%;
+  overflow: hidden;
+}
+.chat-navigation{
+  position:absolute;
+  top:0;
+  left:0;
+  height:45px;
+  width:100%;
+}
+.chat-navigation * {
+  height:100%;
+}
+.chat-navigation > div {
+  position:absolute;
+}
+.chat-navigation > div:first-child {
+  width:100px;
+  left:0;
+}
+.chat-navigation > div:first-child+div {
+  width:100px;
+  left:100px;
+}
+.chat-window-wrapper{
+  overflow-x: hidden;
+  display: block;
+  position:absolute;
+  height:auto;
+  bottom:0;
+  top:0;
+  left:0;
+  right:-20px;
+  margin-top:45px;
+  margin-bottom:45px;
+  background:#eee;
+}
+.chat-window{
+  height:auto;
+}
+.chat-message{
+  position:absolute;
+  bottom:0;
+  left:0;
+  height:45px;
+  width:100%;
+}
+.chat-message * {
+  height:100%;
+}
+.chat-message button{
+  width:100%;
+}
+.chat-message > div {
+  position:absolute;
+}
+.chat-message > div:first-child {
+  width:100px;
+  left:0;
+}
+.chat-message > div:first-child+div {
+  width:100%;
+  right:0;
+  left:0;
+  margin-left:100px;
+}

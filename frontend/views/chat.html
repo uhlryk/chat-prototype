@@ -1,0 +1,22 @@
+<div class="chat">
+  <div class="chat-navigation">
+    <div>
+      <button type="button" ng-click="send()" class="btn btn-lg btn-default">users <span class="glyphicon glyphicon-user"></span></button>
+    </div>
+    <div>
+      <button type="button" ng-click="changeRoom()" class="btn btn-lg btn-default">rooms <span class="glyphicon glyphicon-home"></span></button>
+    </div>
+  </div>
+  <div class="chat-window-wrapper">
+    <div class="chat-window">
+    </div>
+  </div>
+  <div class="chat-message">
+    <div>
+      <button type="button" ng-click="send()" class="btn btn-lg btn-default">send <span class="glyphicon glyphicon-envelope"></span></button>
+    </div>
+    <div>
+      <input type="text" class="form-control text-center" name="message" ng-model="message" placeholder="your message" ng-maxlength=100 maxlength="100">
+    </div>
+  </div>
+</div>
