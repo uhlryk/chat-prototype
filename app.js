@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '/bower_components/bootstrap-sass/assets/')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
-app.use('/api',routes);
+
 app.use('/*', function(req, res){
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
