@@ -31,7 +31,9 @@ body {
   font-size:19px;
 }
 .error-template {padding: 40px 15px;text-align: center;}
-
+.logo-input{
+  width:100%;
+}
 .chat{
   position:absolute;
   top:0;
@@ -46,6 +48,7 @@ body {
   left:0;
   height:45px;
   width:100%;
+  z-index:10;
 }
 .chat-navigation * {
   height:100%;
@@ -70,12 +73,12 @@ body {
   top:0;
   left:0;
   right:-20px;
-  margin-top:45px;
   margin-bottom:45px;
   background:#eee;
 }
 .chat-window{
   height:auto;
+  margin:50px 0;
 }
 .chat-message{
   position:absolute;
@@ -90,16 +93,24 @@ body {
 .chat-message button{
   width:100%;
 }
-.chat-message > div {
+.chat-message > .send {
   position:absolute;
-}
-.chat-message > div:first-child {
   width:100px;
   left:0;
 }
-.chat-message > div:first-child+div {
-  width:100%;
+.chat-message > .input {
+  position:absolute;
+  width:auto;
   right:0;
   left:0;
   margin-left:100px;
+}
+
+.chat-window{
+
+}
+.panel-left, .panel-right{
+  margin-top:10px;
+  width:80%;
+  margin: 10px auto 0;
 }

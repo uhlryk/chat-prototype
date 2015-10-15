@@ -1,35 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-3 col-sm-6" ng-show="activeRoom.id">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8" ng-show="activeRoom.id">
       <h2 class="medium-label">Your are connected to room</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-offset-3 col-sm-6 text-center" ng-show="activeRoom.id">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 text-center" ng-show="activeRoom.id">
       <button type="button" ng-click="backToRoom()" class="btn btn-lg btn-default room-button">{{activeRoom.name}}</button>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-offset-3 col-sm-6">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
       <h2 class="medium-label">Select room</h2>
     </div>
   </div>
   <div class="row" ng-show="rooms ===undefined || rooms.length === 0">
-    <div class="col-md-offset-3 col-sm-6 text-center">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 text-center">
       <div>There is no rooms</div>
     </div>
   </div>
   <div class="row" ng-repeat="room in rooms">
-    <div class="col-md-offset-3 col-sm-6 text-center">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 text-center">
       <button type="button" ng-click="selectRoom(room.id, room.name)" class="btn btn-lg btn-default room-button">{{room.name}}</button>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-offset-3 col-sm-6">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
       <h2 class="medium-label">Create new room</h2>
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control text-center" name="newroom" ng-model="newroom" placeholder="write room name" ng-maxlength=20 maxlength="20">
+          <input ng-enter="create()" auto-focus type="text" class="form-control text-center" name="newroom" ng-model="newroom" placeholder="write room name" ng-maxlength=20 maxlength="20">
           <span class="input-group-addon" ng-class='{"success-block":newroom}'><span class="glyphicon glyphicon-home"></span></span>
         </div>
         <p>chars left: {{20-newroom.length}}</p>

@@ -1,10 +1,10 @@
 <div class="container container-vertical">
   <div class="row vertical-center-row">
-    <div class="col-md-offset-3 col-sm-6">
+    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
       <h2 class="medium-label">Please write your chat nick <small>Or leave empty for random</small></h2>
       <div class="form-group">
-        <div class="input-group">
-          <input type="text" class="form-control text-center" name="nick" ng-model="nick" placeholder="your nick" ng-maxlength=20 maxlength="20">
+        <div class="input-group logo-input">
+          <input ng-enter="login()" auto-focus type="text" class="form-control text-center" name="nick" ng-model="nick" placeholder="your nick" ng-maxlength=20 maxlength="20">
           <span class="input-group-addon" ng-class='{"success-block":nick}'><span class="glyphicon glyphicon-user"></span></span>
         </div>
         <p>chars left: {{20-nick.length}}</p>

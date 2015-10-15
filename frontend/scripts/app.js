@@ -4,7 +4,7 @@
   require('./config');
   require('./controllers');
   require('./services');
-  var app = angular.module('ChatApp', ['ngAnimate', 'angularMoment', 'ui.router','dynamicNumber', 'btford.socket-io','Config', 'ChatApp.Controllers', 'ChatApp.Services']);
+  var app = angular.module('ChatApp', ['ngAnimate', 'angularMoment', 'ui.router','luegg.directives','dynamicNumber', 'btford.socket-io','Config', 'ChatApp.Controllers', 'ChatApp.Services']);
   app.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
     $stateProvider
     .state('404', {

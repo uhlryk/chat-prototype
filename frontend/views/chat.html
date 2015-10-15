@@ -1,22 +1,36 @@
 <div class="chat">
   <div class="chat-navigation">
     <div>
-      <button type="button" ng-click="send()" class="btn btn-lg btn-default">users <span class="glyphicon glyphicon-user"></span></button>
-    </div>
-    <div>
       <button type="button" ng-click="changeRoom()" class="btn btn-lg btn-default">rooms <span class="glyphicon glyphicon-home"></span></button>
     </div>
   </div>
-  <div class="chat-window-wrapper">
+  <div class="chat-window-wrapper" scroll-glue>
     <div class="chat-window">
+      <div class="" ng-repeat="message in messageList">
+        <div class="panel panel-primary panel-right" ng-if="message.type==='otherMessage'">
+          <div class="panel-heading">{{message.user}}</div>
+          <div class="panel-body"><span class="glyphicon glyphicon-envelope"></span> {{message.text}}</div>
+        </div>
+        <div class="panel panel-primary panel-left" ng-if="message.type==='ownerMessage'">
+          <div class="panel-body"><span class="glyphicon glyphicon-pencil"></span> {{message.text}}</div>
+        </div>
+        <div class="panel panel-warning panel-right" ng-if="message.type==='leaveRoom'">
+          <div class="panel-heading">{{message.user}}</div>
+          <div class="panel-body"><span class="glyphicon glyphicon-remove"></span> {{message.text}}</div>
+        </div>
+        <div class="panel panel-success panel-right" ng-if="message.type==='enterRoom'">
+          <div class="panel-heading">{{message.user}}</div>
+          <div class="panel-body"><span class="glyphicon glyphicon-user"></span> {{message.text}}</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="chat-message">
-    <div>
+    <div class="send">
       <button type="button" ng-click="send()" class="btn btn-lg btn-default">send <span class="glyphicon glyphicon-envelope"></span></button>
     </div>
-    <div>
-      <input type="text" class="form-control text-center" name="message" ng-model="message" placeholder="your message" ng-maxlength=100 maxlength="100">
+    <div class="input">
+      <input type="text" ng-enter="send()" auto-focus class="form-control text-center" name="message" ng-model="message" placeholder="your message" ng-maxlength=100 maxlength="100">
     </div>
   </div>
 </div>
