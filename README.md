@@ -28,6 +28,7 @@ backend - node.js express
     cd chat-prototype
     npm install
     bower install
+    gulp all
     npm start
 
 go to url:
