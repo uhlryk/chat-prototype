@@ -19,9 +19,6 @@ module.exports = angular.module('ChatApp.Controllers',[])
     $scope.newroom = "";
   };
   $scope.selectRoom = function(id, name){
-    // if(connection.activeRoom.id) {
-    //   connection.socket.emit('leaveRoom');
-    // }
     connection.activeRoom.name = name;
     connection.activeRoom.id = id;
     connection.socket.emit('enterRoom',{id : connection.activeRoom.id});
@@ -48,7 +45,6 @@ module.exports = angular.module('ChatApp.Controllers',[])
     $state.go('rooms');
   };
   connection.socket.on('enterRoom', function(data){
-    console.log('enterRoom '+data.nickname);
     $scope.messageList.push({
       type:'enterRoom',
       text:'enter room',
@@ -56,7 +52,6 @@ module.exports = angular.module('ChatApp.Controllers',[])
     });
   });
   connection.socket.on('leaveRoom', function(data){
-    console.log('leaveRoom '+data.nickname);
     $scope.messageList.push({
       type:'leaveRoom',
       text:'leave room',
@@ -64,7 +59,6 @@ module.exports = angular.module('ChatApp.Controllers',[])
     });
   });
   connection.socket.on('message', function(data){
-    console.log('author '+data.author +  'message '+data.text);
     if(data.owner === true){
       $scope.messageList.push({
         type:'ownerMessage',

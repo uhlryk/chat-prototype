@@ -1,4 +1,6 @@
 var uuid = require('uuid');
+var validator = require('validator');
+
 module.exports = function(http){
   var connectionList = [];
   var roomList = [];
@@ -7,19 +9,24 @@ module.exports = function(http){
   io.on('connection', function(socket){
     var connection = createConnection(socket);
     addUser(connection);
-    console.log(connection.user.id + ' connected');
     socket.on('login', function(data){
-      console.log(connection.user.id + ' login nickname: '+ data.nickname);
-      //send back nick, it is usefull when nick is duplicated and server add number suffix
-      connection.user.nickname = data.nickname;
+      var nickname="";
+      if(data && data.nickname && validator.isLength(data.nickname, 1,20)){
+        nickname = data.nickname;
+      } else{
+        nickname= "user_" + connection.user.id.toString().slice(0, 8);
+      }
+      connection.user.nickname = nickname;
       socket.emit('login', { nickname: connection.user.nickname, id:  connection.user.id});
     });
     socket.on('rooms', function(){
       socket.emit('rooms', roomList);
     });
     socket.on('newRoom', function(data){
-      var room = addRoom(data.name);
-      emitNewRoom(room);
+      if(data && data.name && validator.isLength(data.name, 1,20)){
+        var room = addRoom(data.name);
+        emitNewRoom(room);
+      }
     });
     socket.on('enterRoom', function(data){
       var room;
@@ -39,22 +46,22 @@ module.exports = function(http){
       }
     });
     socket.on('disconnect', function(){
-      console.log(connection.user.id + ' disconnected');
       if(connection.activeRoom){
         emitLeaveRoom(connection);
       }
       removeConnection(connection);
       connection=null;
     });
-    socket.on('message', function(message){
-      connectionList.forEach(function(otherConnection){
-        if(otherConnection.user.id !== connection.user.id && otherConnection.activeRoom.id === connection.activeRoom.id){
-          otherConnection.socket.emit('message', {text:message.text, author:connection.user.nickname});
-        } else if(otherConnection.user.id === connection.user.id){
-          connection.socket.emit('message', {text:message.text, owner:true});
-        }
-      });
-      console.log(connection.user.id + ' message: "'+ message+'"');
+    socket.on('message', function(data){
+      if(data && data.text && validator.isLength(data.text, 1,100)){
+        connectionList.forEach(function(otherConnection){
+          if(otherConnection.user.id !== connection.user.id && otherConnection.activeRoom.id === connection.activeRoom.id){
+            otherConnection.socket.emit('message', {text:data.text, author:connection.user.nickname});
+          } else if(otherConnection.user.id === connection.user.id){
+            connection.socket.emit('message', {text:data.text, owner:true});
+          }
+        });
+      }
     });
   });
   function addRoom(name){

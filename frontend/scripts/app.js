@@ -17,7 +17,6 @@
       controller:'LoginController',
       resolve: {
         access: ['connection',function (connection) {
-          console.log("state: login");
           connection.user.nickname="";
           connection.user.id=0;
           connection.activeRoom.name="";
@@ -32,7 +31,6 @@
       controller: 'ChatController',
       resolve: {
         access: ['$q', 'connection',function ($q, connection) {
-          console.log("state: chat");
           if (!connection.user.id || !connection.activeRoom.id) {
             return $q.reject("room");
           }
@@ -46,8 +44,6 @@
       controller: 'RoomsController',
       resolve: {
         access: ['$q', 'connection',function ($q, connection) {
-          console.log("state: rooms");
-          console.log(connection.user);
           if (!connection.user.id) {
             return $q.reject("nickname");
           }
@@ -65,7 +61,6 @@
         case 'room':
           $state.go("rooms");
         break;
-        //case 'nickname':
         default:
           $state.go("login");
       }
