@@ -15,8 +15,8 @@ backend - node.js express
 ## Features:
 1. Users write nickname
 2. If user nicname field leave blank than name will be generate
-3, Each user has generated id.
-4, List of rooms
+3. Each user has generated id.
+4. List of rooms
 5. Each user can add new room with any name
 6. User can enter any room
 7. User can change room
